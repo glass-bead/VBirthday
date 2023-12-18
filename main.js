@@ -1,13 +1,27 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron');
+const fs = require('fs');
+const path = require('path');
 
 /* Load webpage into a new BrowserWindow instance */
 const createWindow = () => {
     const win = new BrowserWindow({
         width: 800,
-        height: 600
+        height: 600,
+        icon: __dirname + '/icons/favicon.ico',
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: true,
+        }
     })
 
-    win.loadFile('index.html')
+    // Load HTML and CSS(SCSS)
+    win.loadFile('index.html');
+    win.webContents.on('did-finish-load', () => {
+        win.webContents.insertCSS(fs.readFileSync('styles/style.css', 'utf-8'));
+    });
+
+    // Remove the default menu bar
+    Menu.setApplicationMenu(null);
 }
 
 /* Create window when app is ready */
