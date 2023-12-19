@@ -13,6 +13,9 @@
 </head>
 
 <body>
+    <div class="information">
+        <h1>Click on the + button to add candles. <br /> And click "OK" when you're done.</h1>
+    </div>
     <div class="container">
         <div class="cake">
             <div class="plate"></div>
@@ -23,19 +26,22 @@
             <div class="drip drip1"></div>
             <div class="drip drip2"></div>
             <div class="drip drip3"></div>
-            <div class="candle">
+            <div class="candle" id="birthdayCandle">
                 <div class="flame"></div>
             </div>
         </div>
-        <!-- <div class="add-button">+</div> -->
-        <div class="button-container">
-            <button type="button" class="btn btn-success">+</button>
-            <button type="button" class="btn btn-info">OK</button>
-        </div>
-
+    </div>
+    <!-- <div class="add-button">+</div> -->
+    <div class="button-container" id="buttonContainer">
+        <button type="button" class="btn btn-success" id="plusButton">+</button>
+        <button type="button" class="btn btn-info" id="okButton">OK</button>
     </div>
 
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="animation.js"></script>
+    <script> const { app } = require('electron').remote; </script>
+
+
 </body>
 
 </html>

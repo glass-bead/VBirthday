@@ -6,11 +6,12 @@ const path = require('path');
 const createWindow = () => {
     const win = new BrowserWindow({
         width: 800,
-        height: 600,
+        height: 650,
         icon: __dirname + '/icons/favicon.ico',
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: true,
+            webSecurity: false,
         }
     })
 

@@ -6,6 +6,7 @@ $wax: #7b020b;
 
 html body {
     background-color: #333;
+    font-family: 'Oswald', sans-serif !important;
 }
 
 @mixin foodColoring($color) {
@@ -31,15 +32,14 @@ html body {
 }
 
 .plate {
-    width: 300px;
+    width: 500px;
     height: 110px;
     position: absolute;
     bottom: -10px;
-    left: -24px;
+    left: -120px;
     border-radius: 50%;
     background-color: $ceramic;
-    box-shadow: 0 2px 0 darken($ceramic, 10%), 0 4px 0 darken($ceramic, 10%),
-        0 5px 40px rgba($shadow, 0.5);
+    box-shadow: 0 2px 0 #b3b3b3, 0 4px 0 #b3b3b3, 0 5px 40px rgba(0, 0, 0, 0.5);
 }
 
 .cake>* {
@@ -49,7 +49,8 @@ html body {
 .layer {
     position: absolute;
     display: block;
-    width: 250px;
+    width: 400px;
+    left: -70px;
     height: 100px;
     border-radius: 50%;
     @include foodColoring($chocolate);
@@ -69,9 +70,9 @@ html body {
 
 .icing {
     top: 1px;
-    left: 1px;
+    left: -70px;
     background-color: $vanilla;
-    width: 250px;
+    width: 400px;
     height: 100px;
     border-radius: 50%;
 
@@ -101,7 +102,7 @@ html body {
 
 .drip1 {
     top: 53px;
-    left: 1px;
+    left: -70px;
     transform: skewY(15deg);
     height: 48px;
     width: 40px;
@@ -109,13 +110,13 @@ html body {
 
 .drip2 {
     top: 69px;
-    left: 181px;
+    left: 230px;
     transform: skewY(-15deg);
 }
 
 .drip3 {
-    top: 54px;
-    left: 90px;
+    top: 60px;
+    left: 30px;
     width: 80px;
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
@@ -191,6 +192,21 @@ html body {
     }
 }
 
+.drop-animation {
+    animation: dropAnimation 1s ease-in-out;
+}
+
+@keyframes dropAnimation {
+    0% {
+        transform: translateY(-50px);
+    }
+
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
 .add-button {
     background-color: #04AA6D;
     //display: inline-block;
@@ -217,32 +233,32 @@ body .button-container {
 }
 
 body .btn {
-    font-size: 30px;
     font-weight: 900;
-    padding: 15px;
     margin: 0 10px;
     color: $shadow;
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
 }
 
 body .btn-success {
-    padding: 15px 27px;
+    padding: 13px 30px;
+    font-size: 40px;
+}
+
+body .btn-info {
+    padding: 15px 19px;
     font-size: 30px;
 }
 
-// .btn {
-//     background-color: #04AA6D;
-//     padding: 10px 25px;
-//     border-radius: 20%;
-//     text-align: center;
-//     text-decoration: none;
-//     font-size: 35px;
-//     font-weight: 900;
-//     position: absolute;
-//     bottom: 30px;
-//     left: 50%;
-//     transform: translateX(-50%);
-// }
+.information {
+    margin-top: 60px;
+    text-align: center;
+    color: $ceramic;
 
-// .btn::hover{
-//     cursor: pointer;
-// }
+    h1 {
+        font-size: 26px;
+    }
+}
+
+
