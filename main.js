@@ -2,16 +2,19 @@ const { app, BrowserWindow, Menu } = require('electron');
 const fs = require('fs');
 const path = require('path');
 
+require('electron-debug')({ showDevTools: false }); // debugging
+
 /* Load webpage into a new BrowserWindow instance */
 const createWindow = () => {
     const win = new BrowserWindow({
         width: 800,
         height: 650,
-        icon: __dirname + '/icons/favicon.ico',
+        icon: __dirname + '/media/favicon.ico',
         webPreferences: {
             nodeIntegration: true,
-            contextIsolation: true,
-            webSecurity: false,
+            contextIsolation: false,
+            webSecurity: true, 
+            enableRemoteModule: true,
         }
     })
 

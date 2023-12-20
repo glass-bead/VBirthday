@@ -1,8 +1,12 @@
+const { remote } = require('electron');
+const path = require('path');
+
 document.addEventListener("DOMContentLoaded", function () {
 
     /* Global flags */
     var blowable = false;
     var blowing = false;
+    var audioPlayed = false;
 
     /* Element references*/
     var plusButton = document.getElementById("plusButton");
@@ -79,12 +83,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Function to get the current loudness
                 function getLoudness() {
+
+                    if (!blowable) {
+                        return;
+                    }
+
                     analyser.getByteFrequencyData(dataArray);
 
                     // Calculate the average amplitude
                     const averageAmplitude = dataArray.reduce((sum, value) => sum + value, 0) / bufferLength;
 
-                    if (averageAmplitude >= 100) {
+                    if (averageAmplitude >= 10) {
                         console.log("BLOWING!!");
                         blowing = true;
                         extinguishCandles();
@@ -97,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 // Set up a loop to continuously check the loudness
-                setInterval(getLoudness, 100); // Adjust the interval as needed
+                setInterval(getLoudness, 100);
 
                 console.log("Microphone detected");
             }).catch((err) => {
@@ -125,8 +134,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }, 500);
         } else {
+            blowable = false;
+            // Change message
             information.textContent = "HAPPY BIRTHDAY!!";
+            information.style.fontSize = '50px';
+            information.style.marginTop = "80px";
+            information.style.fontWeight = "800";
+
+            if (!audioPlayed) {
+                var audioElement = new Audio();
+                const audioPath = path.join(__dirname, '/media/happy_birthday_song.mp3');
+                audioElement.src = audioPath;
+                audioElement.play();
+                audioPlayed = true;
+            }
         }
     }
-
 });
