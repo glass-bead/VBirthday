@@ -207,23 +207,6 @@ html body {
     }
 }
 
-.add-button {
-    background-color: #04AA6D;
-    //display: inline-block;
-    color: $ceramic;
-    padding: 10px 25px;
-    border-radius: 20%;
-    text-align: center;
-    text-decoration: none;
-    font-size: 35px;
-    font-weight: 900;
-
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
 body .button-container {
     position: absolute;
     display: flex;
